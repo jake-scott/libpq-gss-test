@@ -4,12 +4,19 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"os"
 
 	_ "github.com/lib/pq"
 )
 
 func main() {
-	connStr := "host=wellard.poptart.org dbname=test sslmode=disable"
+	hn, err := os.Hostname()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	connStr := fmt.Sprintf("host=%s dbname=test sslmode=disable", hn)
+	fmt.Printf("Connect string: %s\n", connStr)
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 		log.Fatal(err)
