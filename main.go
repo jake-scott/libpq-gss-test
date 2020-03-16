@@ -15,7 +15,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	connStr := fmt.Sprintf("host=%s dbname=test sslmode=disable", hn)
+	connStr := fmt.Sprintf("host=%s service=postgres dbname=test sslmode=disable", hn)
 	fmt.Printf("Connect string: %s\n", connStr)
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
